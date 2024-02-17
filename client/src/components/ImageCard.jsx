@@ -84,7 +84,7 @@ const ImageCard = ({ item }) => {
             {item?.name}
           </Author>
           <DownloadRounded
-            onClick={() => FileSaver.saveAs(item?.photo, "download.jpg")}
+            onClick={() => FileSaver.saveAs(item?.photo, `${item.prompt}.jpg`)}
           />
         </div>
       </HoverOverlay>

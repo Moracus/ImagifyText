@@ -90,8 +90,12 @@ const Home = () => {
       setFilterdPosts(posts);
     }
     const searchFilteredPosts = posts.filter((post) => {
-      const promptMatch = post?.prompt?.toLowerCase().includes(search.toString().toLowerCase());
-      const authorMatch = post?.name?.toLowerCase().includes(search.toString().toLowerCase());
+      const promptMatch = post?.prompt
+        ?.toLowerCase()
+        .includes(search.toString().toLowerCase());
+      const authorMatch = post?.name
+        ?.toLowerCase()
+        .includes(search.toString().toLowerCase());
       return promptMatch || authorMatch;
     });
     if (search) {
@@ -126,6 +130,9 @@ const Home = () => {
           </CardWrapper>
         )}
       </Wrapper>
+      <div>
+        <a href="https://github.com/moracus">made by harsh sharma</a>
+      </div>
     </Container>
   );
 };

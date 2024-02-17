@@ -23,7 +23,7 @@ const Navbar = () => {
   const path = location.pathname.split("/");
   return (
     <Container>
-      GEN AI
+      <h3>imagifyText</h3>
       {path[1] === "post" ? (
         <Button
           text="Explore Posts"

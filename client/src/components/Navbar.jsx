@@ -28,7 +28,7 @@ const Navbar = () => {
         <Button
           text="Explore Posts"
           leftIcon={<ExploreRounded style={{ fontSize: "18px" }} />}
-          onClick={() => Navigate("/post")}
+          onClick={() => Navigate("/")}
           type="secondary"
         ></Button>
       ) : (

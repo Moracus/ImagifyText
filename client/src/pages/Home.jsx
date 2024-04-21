@@ -123,7 +123,7 @@ const Home = () => {
                   .slice()
                   .reverse()
                   .map((item, index) => {
-                    return <ImageCard key={index} item={item} />;
+                    return <ImageCard key={index} item={item} id={item._id} />;
                   })}
               </>
             )}

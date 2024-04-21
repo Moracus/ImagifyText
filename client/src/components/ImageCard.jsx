@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Avatar } from "@mui/material";
-import { DownloadRounded } from "@mui/icons-material";
+import { DownloadRounded, DeleteRounded } from "@mui/icons-material";
 import FileSaver from "file-saver";
+import { deletePost } from "../api";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+const KEY = import.meta.env.VITE_PASSWORD;
 
 const Card = styled.div`
   position: relative;
@@ -58,7 +62,25 @@ const Author = styled.div`
   color: ${({ theme }) => theme.white};
 `;
 
-const ImageCard = ({ item }) => {
+const ImageCard = ({ item, id }) => {
+  const navigate = useNavigate();
+  const [devMode, setDevMode] = useState(false);
+  let devPass = localStorage.getItem("password") || "";
+  useEffect(() => {
+    if (devPass == KEY) {
+      setDevMode(true);
+    } else {
+      setDevMode(false);
+    }
+  }, []);
+  const handleDelete = async (currentId) => {
+    // console.log(currentId);
+    const response = await deletePost(currentId);
+    const result = await response.data;
+    if (result?.message) {
+      navigate(0);
+    }
+  };
   return (
     <Card>
       <LazyLoadImage
@@ -86,6 +108,7 @@ const ImageCard = ({ item }) => {
           <DownloadRounded
             onClick={() => FileSaver.saveAs(item?.photo, `${item.prompt}.jpg`)}
           />
+          {devMode && <DeleteRounded onClick={() => handleDelete(id)} />}
         </div>
       </HoverOverlay>
     </Card>

@@ -6,7 +6,7 @@ import fetch from 'node-fetch'
 dotenv.config();
 
 const hf_token = process.env.HF_TOKEN;
-//controller to generate image
+
 
 export const generateImage = async (req, res, next) => {
   try {

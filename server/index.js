@@ -6,9 +6,11 @@ import postRouter from "./routes/Posts.js";
 import generateImageRouter from "./routes/GenerateImage.js";
 dotenv.config();
 const app = express();
-app.use(cors({
-  origin:["https://imagifytext.netlify.app","http://localhost:*"]
-    }));
+app.use(
+  cors({
+    origin: ["https://imagifytext.netlify.app", "http://localhost:5173"],
+  })
+);
 app.use(express.json({ limit: "50mb" }));
 
 app.use(express.urlencoded({ extended: true }));
@@ -25,7 +27,7 @@ app.use((err, req, res, next) => {
 });
 
 app.use("/api/post", postRouter);
-app.use("/api/generateimage",generateImageRouter);
+app.use("/api/generateimage", generateImageRouter);
 
 // default get
 app.get("/", async (req, res) => {

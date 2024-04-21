@@ -65,8 +65,8 @@ const Author = styled.div`
 const ImageCard = ({ item, id }) => {
   const navigate = useNavigate();
   const [devMode, setDevMode] = useState(false);
-  let devPass = localStorage.getItem("password") || "";
   useEffect(() => {
+    let devPass = localStorage.getItem("password") || "";
     if (devPass == KEY) {
       setDevMode(true);
     } else {

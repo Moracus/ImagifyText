@@ -1,18 +1,16 @@
 import * as dotenv from "dotenv";
 import { createError } from "../error.js";
-import { response } from "express";
-import fetch from 'node-fetch'
+import fetch from "node-fetch";
 
 dotenv.config();
 
 const hf_token = process.env.HF_TOKEN;
 
-
 export const generateImage = async (req, res, next) => {
   try {
     const { prompt } = req.body;
     const response = await fetch(
-      "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5",
+      "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev",
       {
         headers: {
           Authorization: `Bearer ${hf_token}`,
@@ -28,10 +26,11 @@ export const generateImage = async (req, res, next) => {
     }
     let contentType = response.headers.get("content-type");
     let buffer = await response.buffer();
-    const generatedImageBase64=  buffer.toString('base64');
+    const generatedImageBase64 = buffer.toString("base64");
     // Send the generated image Base64 URL string in the response
     return res.status(200).json({ photo: generatedImageBase64 });
   } catch (error) {
+    console.log(error);
     next(
       createError(
         error.status,

@@ -51,7 +51,7 @@ const connectDB = () => {
 const starServer = () => {
   try {
     connectDB();
-    app.listen(8080, () => console.log("server has been started"));
+    app.listen(3000, () => console.log("server has been started"));
   } catch (error) {
     console.log(error);
   }
